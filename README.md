@@ -9,6 +9,7 @@ I've been slack with managing buffers. Couple notes:
 - split window horizontally/vertically: `C-x 2` or `C-x 3`
 - close the current window with `C-x 0`
 - close all _other_ windows with `C-x 1`
+- change to other window with `C-x C-o`
 
 - open an entire new frame with `C-x 5 2` (delete with 0 and 1 as with windows)
 
