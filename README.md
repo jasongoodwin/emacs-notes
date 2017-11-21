@@ -32,3 +32,9 @@ Speed bar isn't really suitable for navigating projects. I've been trying to use
 - set a project with `C-c p p`
 - find a file with `C-c p f`
 most of the commands of interest (delete, move etc) can be executed from the find file command 
+ 
+# Zoom
+```
+C-x C-+ 
+C-x C--
+```
