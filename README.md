@@ -21,3 +21,37 @@ most of the commands of interest (delete, move etc) can be executed from the fin
 C-x C-+ 
 C-x C--
 ```
+
+
+# init.el backup...
+```
+;; probably don't need this anymore but ¯\_(ツ)_/¯
+(global-unset-key (kbd "<left>"))
+(global-unset-key (kbd "<right>"))
+(global-unset-key (kbd "<up>"))
+(global-unset-key (kbd "<down>"))
+(global-unset-key (kbd "<C-left>"))
+(global-unset-key (kbd "<C-right>"))
+(global-unset-key (kbd "<C-up>"))
+(global-unset-key (kbd "<C-down>"))
+(global-unset-key (kbd "<M-left>"))
+(global-unset-key (kbd "<M-right>"))
+(global-unset-key (kbd "<M-up>"))
+(global-unset-key (kbd "<M-down>"))
+
+;; use shift + arrow keys to switch between visible buffers
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
+;; save on loose focus!
+(add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
+
+;; speedbar is disabled, but if I use it I want it to show all files
+(custom-set-variables
+ '(speedbar-show-unknown-files t)
+)
+
+;; put time in modeline
+(display-time-mode 1)
+
+```
