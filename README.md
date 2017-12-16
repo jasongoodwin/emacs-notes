@@ -25,7 +25,25 @@ C-x C--
 
 # init.el backup...
 ```
-;; probably don't need this anymore but ¯\_(ツ)_/¯
+(setq gc-cons-threshold 100000000)
+
+(defconst spacemacs-version          "0.200.9" "Spacemacs version.")
+(defconst spacemacs-emacs-min-version   "24.4" "Minimal version of Emacs.")
+
+(if (not (version<= spacemacs-emacs-min-version emacs-version))
+    (error (concat "Your version of Emacs (%s) is too old. "
+                   "Spacemacs requires Emacs version %s or above.")
+           emacs-version spacemacs-emacs-min-version)
+  (load-file (concat (file-name-directory load-file-name)
+                     "core/core-load-paths.el"))
+  (require 'core-spacemacs)
+  (spacemacs/init)
+  (configuration-layer/sync)
+  (spacemacs-buffer/display-startup-note)
+  (spacemacs/setup-startup-hook)
+  (require 'server)
+  (unless (server-running-p) (server-start)))
+
 (global-unset-key (kbd "<left>"))
 (global-unset-key (kbd "<right>"))
 (global-unset-key (kbd "<up>"))
@@ -43,15 +61,19 @@ C-x C--
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
-;; save on loose focus!
 (add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
 
-;; speedbar is disabled, but if I use it I want it to show all files
 (custom-set-variables
  '(speedbar-show-unknown-files t)
 )
 
-;; put time in modeline
 (display-time-mode 1)
 
+(setq-default flycheck-scalastylerc "/Users/jasongoodwin/scalastyle_config.xml")
+
+(setq-default dotspacemacs-configuration-layers '(
+  (scala :variables scala-indent:use-javadoc-style t)))
+
+(setq-default dotspacemacs-configuration-layers '(
+    (scala :variables scala-auto-start-ensime t)))
 ```
